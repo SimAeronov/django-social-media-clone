@@ -8,4 +8,6 @@ urlpatterns = [
     path("", views.ListSocioGhibliGroupView.as_view(), name="all"),
     path("new/", views.CreateSocioGhibliGroupView.as_view(), name="create"),
     path("posts/in/<slug>/", views.SingleSocioGhibliGroupView.as_view(), name="single"),
+    path("join/<slug>/", views.JoinSocioGhibliGroupView.as_view(), name="join"),
+    path("leave/<slug>/", views.LeaveSocioGhibliGroupView.as_view(), name="leave")
 ]
