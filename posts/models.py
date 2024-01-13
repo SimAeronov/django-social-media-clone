@@ -9,11 +9,11 @@ from groups.models import SocioGhibliGroup
 current_user = get_user_model()
 
 class SocioGhibliPost(models.Model):
-    user = models.ForeignKey(current_user, related_name="posts")
+    user = models.ForeignKey(current_user, related_name="posts", on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now=True)
     message = models.TextField()
     message_html = models.TextField(editable=False)
-    group = models.ForeignKey(SocioGhibliGroup, related_name="posts", null=True, blank=True)
+    group = models.ForeignKey(SocioGhibliGroup, related_name="posts", null=True, blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.message

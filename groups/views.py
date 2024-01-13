@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
-from django.views.generic import CreateView, DetailView, RedirectView
+from django.views.generic import CreateView, DetailView, ListView, RedirectView
 from django.contrib import messages
 from django.db import IntegrityError
 from .models import SocioGhibliGroup, SocioGhibliGroupMember
@@ -14,7 +14,7 @@ class CreateSocioGhibliGroupView(LoginRequiredMixin, CreateView):
 class SingleSocioGhibliGroupView(DetailView):
     model = SocioGhibliGroup
     context_object_name = "group"
-    temmplate_name = "groups/group_detail.html"
+    template_name  = "groups/group_detail.html"
 
 class ListSocioGhibliGroupView(ListView):
     model = SocioGhibliGroup
@@ -28,7 +28,7 @@ class JoinSocioGhibliGroupView(LoginRequiredMixin, RedirectView):
     def get(self, request, *args, **kwargs):
         group = get_object_or_404(SocioGhibliGroup, slug=self.kwargs.get("slug"))
         try:
-            SocioGhibliGroupMember.object.create(user=self.request.user, group=group)
+            SocioGhibliGroupMember.objects.create(user=self.request.user, group=group)
         except IntegrityError:
             messages.warning(self.request, "Warning, already a member!")
         else:

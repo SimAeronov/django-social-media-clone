@@ -31,8 +31,8 @@ class SocioGhibliGroup(models.Model):
         ordering = ["name"]
 
 class SocioGhibliGroupMember(models.Model):
-    group = models.ForeignKey(SocioGhibliGroup, related_name="memberships")
-    user = models.ForeignKey(current_user, related_name="user_groups")
+    group = models.ForeignKey(SocioGhibliGroup, related_name="memberships", on_delete=models.CASCADE)
+    user = models.ForeignKey(current_user, related_name="user_groups", on_delete=models.CASCADE)
     favourite_quote = models.CharField(max_length=255, blank=True, default='')
 
     def __str__(self):
