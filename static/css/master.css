@@ -9,6 +9,9 @@ body {
     background-repeat: no-repeat;
 }
 
+.aria-font {
+    font-family: 'Arial', sans-serif; /* Use Arial font */
+}
 .mycontainer {
     margin-top: 20px; /* Adjust as needed */
 }

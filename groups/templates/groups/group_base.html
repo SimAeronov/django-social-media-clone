@@ -1,12 +1,15 @@
 {% extends "base.html" %}
+{% load static %}
+{% load bootstrap5 %}
+
+{% block extrahead %}
+  <link rel="stylesheet" href="{% static 'groups/css/styles.css' %}">
+{% endblock %}
+
 {% block content %}
-
-<div class="container">
-    <div class="row">
-        {% block pregroup%}{% endblock %}
-        {% block group_content%}{% endblock %}
-        {% block postgroup%}{% endblock %}
-    </div>
-</div>
-
+  <div class="container">
+    {% block pregroup %}{% endblock %}
+    {% block group_content %}{% endblock %}
+    {% block postgroup %}{% endblock %}
+  </div>
 {% endblock %}
