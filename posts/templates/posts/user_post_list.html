@@ -1,7 +1,7 @@
 {% extends "posts/post_base.html" %}
 {% block prepost %}
 <div class="col-md-4">
-    <h2>All Posts</h2>
+    <h2>All Posts from {{ user_info.username|title }}</h2>
 </div>
 {% endblock %}
 {% block post_content %}

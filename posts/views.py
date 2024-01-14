@@ -7,8 +7,8 @@ from django.views.generic import ListView, DetailView, CreateView, DeleteView
 from django.http import Http404
 from braces.views import SelectRelatedMixin
 from posts.models import SocioGhibliPost
+from .forms import SocioGhibliCreatePostForm
 from . import models
-from . import forms
 
 current_user = get_user_model()
 
@@ -21,6 +21,7 @@ class SocioGhibliUserPosts(ListView):
     model = models.SocioGhibliPost
     template_name = "posts/user_post_list.html"
 
+    # I need to work on this get_queryset and get_context_data. My Custom User is not OK.
     def get_queryset(self):
         try:
             user_instance = current_user.objects.get(username__iexact=self.kwargs.get("username"))
@@ -33,6 +34,9 @@ class SocioGhibliUserPosts(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["post_user"] = self.post_user
+        context["user_info"] = {
+            "username": self.post_user.first().user.username,
+        }
         return context
 
 class SocioGhibliPostDetail(SelectRelatedMixin, DetailView):
@@ -46,7 +50,7 @@ class SocioGhibliPostDetail(SelectRelatedMixin, DetailView):
         return self.queryset.filter(user__username__iexact=self.kwargs.get("username"))
 
 class SocioGhibliCreatePost(LoginRequiredMixin, SelectRelatedMixin, CreateView):
-    fields = ("message", "group")
+    form_class = SocioGhibliCreatePostForm
     model = models.SocioGhibliPost
     template_name = "posts/post_form.html"
 

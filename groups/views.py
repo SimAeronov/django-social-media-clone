@@ -5,9 +5,10 @@ from django.views.generic import CreateView, DetailView, ListView, RedirectView
 from django.contrib import messages
 from django.db import IntegrityError
 from .models import SocioGhibliGroup, SocioGhibliGroupMember
+from .forms import SocioGhibliGroupForm
 
 class CreateSocioGhibliGroupView(LoginRequiredMixin, CreateView):
-    fields = ("name", "description")
+    form_class = SocioGhibliGroupForm
     model = SocioGhibliGroup
     template_name = "groups/group_form.html"
 
