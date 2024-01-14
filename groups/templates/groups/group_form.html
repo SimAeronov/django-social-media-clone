@@ -1,6 +1,7 @@
 {% extends "groups/group_base.html" %}
 {% load bootstrap5 %}
 
+{% block title %} New{% endblock %}
 {% block group_content %}
   <h2>Create New Group</h2>
   <form action="{% url 'groups:create' %}" method="post" id="groupForm">
