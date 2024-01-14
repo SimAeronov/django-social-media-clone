@@ -1,0 +1,50 @@
+/* styles.css */
+
+/* Custom styles for body and background */
+body {
+    font-family: 'Shadows Into Light', cursive; /* Use Google Fonts */
+    background-image: url('../socioghibli/images/ghibli_background.jpg');
+    background-size: 70% auto; /* 80% width, maintain aspect ratio */
+    background-position: top right;
+    background-repeat: no-repeat;
+}
+
+.mycontainer {
+    margin-top: 20px; /* Adjust as needed */
+}
+
+/* Custom styles for headings */
+h1, h2, h3, h4, h5, h6 {
+    color: #007bff; /* Bootstrap primary color */
+}
+
+/* Custom styles for paragraphs */
+p {
+    color: #343a40; /* Bootstrap dark color */
+}
+
+/* Custom styles for buttons */
+.btn-primary {
+    background-color: #007bff; /* Bootstrap primary color */
+    border-color: #007bff; /* Bootstrap primary color */
+}
+
+/* Custom styles for navigation bar */
+.navbar {
+    background-color: #e2e2e2; /* Bootstrap primary color */
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #000000; /* White text for navbar links */
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.navbar-light .navbar-toggler-icon {
+    background-color: #221d1d; /* White color for toggler icon */
+}
+
+.navbar-brand {
+    font-family: 'Arial', sans-serif; /* Use Arial font */
+    font-size: xx-large; /* Increase font size as needed */
+}

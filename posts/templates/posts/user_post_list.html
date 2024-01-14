@@ -1,14 +1,12 @@
 {% extends "posts/post_base.html" %}
 {% block prepost %}
 <div class="col-md-4">
-    <h2>@{{ post_user.username }}</h2>
+    <h2>All Posts</h2>
 </div>
 {% endblock %}
 {% block post_content %}
-ERROR SOMEWHERE HERE
-http://127.0.0.1:8000/posts/by/simon
 <div class="col-md-8">
-    {% for post in post_list %}
+    {% for post in post_user %}
     {% include "posts/_post.html" %}
     {% endfor %}
 </div>

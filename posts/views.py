@@ -6,6 +6,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, DeleteView
 from django.http import Http404
 from braces.views import SelectRelatedMixin
+from posts.models import SocioGhibliPost
 from . import models
 from . import forms
 
@@ -22,11 +23,12 @@ class SocioGhibliUserPosts(ListView):
 
     def get_queryset(self):
         try:
-            self.post_user = current_user.objects.prefetch_related("posts").get(username__iexact=self.kwargs.get("username"))
+            user_instance = current_user.objects.get(username__iexact=self.kwargs.get("username"))
+            self.post_user = SocioGhibliPost.objects.filter(user=user_instance).order_by('-created_at')
         except current_user.DoesNotExist:
             raise Http404
         else:
-            return self.post_user.posts.all()
+            return self.post_user
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
